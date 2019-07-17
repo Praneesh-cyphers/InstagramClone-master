@@ -33,6 +33,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         edtUsername = findViewById(R.id.editText2);
         edtPassword = findViewById(R.id.editText3);
 
+        btnLogin = findViewById(R.id.button2);
+        btnSignup = findViewById(R.id.button1);
+
         edtPassword.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
@@ -45,11 +48,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        btnLogin = findViewById(R.id.button1);
-        btnSignup = findViewById(R.id.button2);
 
         btnSignup.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
+
+        if(ParseUser.getCurrentUser() != null) {
+            ParseUser.getCurrentUser().logOut();
+          //  transitionToSocialMediaActivity();
+        }
     }
 
     @Override
@@ -93,6 +99,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             }
 
                             progressDialog.dismiss();
+                            transitionToSocialMediaActivity();
                         }
                     });
                 }
@@ -114,5 +121,10 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void transitionToSocialMediaActivity(){
+        Intent intent = new Intent(this,SocialAcitivity.class);
+        startActivity(intent);
     }
 }

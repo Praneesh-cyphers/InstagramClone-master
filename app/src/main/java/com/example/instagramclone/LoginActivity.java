@@ -3,6 +3,7 @@ package com.example.instagramclone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignupActivity.setOnClickListener(this);
 
         if(ParseUser.getCurrentUser() != null) {
-            ParseUser.getCurrentUser().logOut();
+           ParseUser.getCurrentUser().logOut();
+           // transitionToSocialMediaActivity();
         }
 
     }
@@ -60,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             ,user.getUsername()+" is logged in"
                                             ,FancyToast.LENGTH_SHORT
                                             ,FancyToast.SUCCESS,true).show();
+                                    transitionToSocialMediaActivity();
                                 }else{
                                     FancyToast.makeText(LoginActivity.this
                                             ,"Error while logged in "+e.getMessage()
@@ -81,5 +84,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
 
+    }
+
+    public void transitionToSocialMediaActivity(){
+        Intent intent = new Intent(this,SocialAcitivity.class);
+        startActivity(intent);
     }
 }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="onRootLayoutTapped"
-    tools:context=".loginActvity">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
